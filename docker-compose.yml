@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  serveo:
+    image: taichunmin/serveo-server:latest
+    tty: true
+    stdin_open: true
+    ports:
+    - "80:80"
+    - "443:443"
+    - "2222:22"
+    #update domain "tunnel.srsinternationalschoolramgarh.com" and genrate certificate using certbot keep that in mind no process is running on 443,80 (nginx)
+    volumes:
+    - "/etc/letsencrypt/live/tunnel.srsinternationalschoolramgarh.com/fullchain.pem:/certs/letsencrypt.crt"
+    - "/etc/letsencrypt/live/tunnel.srsinternationalschoolramgarh.com/privkey.pem:/certs/letsencrypt.key"
+    - "./data/.ssh:/root/.ssh"
+    # you should change the domain.
+    # see https://serveo.net/#self-host for more options
+    command: >
+      serveo
+      -port=22
+      -http_port=80
+      -https_port=443
+      -private_key_path=/root/.ssh/id_ed25519
+      -cert_dir=/certs
+      -domain srsinternationalschoolramgarh.com
