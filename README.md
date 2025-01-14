@@ -47,6 +47,13 @@ $ sudo docker-compose logs serveo
 $ ssh -R test.example.com:443:localhost:80 example.com -p 2222 # on another computer
 # Forwarding HTTP traffic from https://test.example.com
 # Press g to start a GUI session and ctrl-c to quit.
+
+#in command ssh -R tunnel.srsinternationalschoolramgarh.com:443:localhost:2222 tunnel.srsinternationalschoolramgarh.com -p 2222
+tunnel.srsinternationalschoolramgarh.com:443 => remain fix only domain need to change
+localhost:2222 => localhost and the port running on local machine port can be chnage to 8080 for http-serve like localhost:8080
+tunnel.srsinternationalschoolramgarh.com -p 2222 => 2222 port is only for internal of docker no need to change
+
+
 ```
 
 ## LICENSE
